@@ -21,23 +21,31 @@
     <div class="container">
       <img src="@if(setting('site.logo')) {{ url('/storage/'.setting('site.logo')) }} @else {{ url('/img/logo.png') }} @endif" class="logo" alt="">
       @guest
-      <form class="form-inline">
+      <form class="form-inline" method="POST" action="{{ route('voyager.login') }}">
+        {{ csrf_field() }}
         <div class="form-group">
           <label class="sr-only" for="email">E-mail</label>
-          <input type="email" class="form-control" id="email" placeholder="Digite o E-mail">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Digite o E-mail" required>
         </div>
         <div class="form-group">
           <label class="sr-only" for="password">Senha</label>
-          <input type="password" class="form-control" id="password" placeholder="Senha">
+          <input type="password" class="form-control" name="password" id="password" placeholder="Senha" required>
         </div>
         <button type="submit" class="btn btn-default">Entrar</button><br>
         <div class="checkbox">
           <label>
-            <input type="checkbox" name="remember"> Lembrar de mim
+            <input type="checkbox" name="remember" checked> Lembrar de mim
           </label>
         </div>
       </form>
       @endguest
+      @auth
+        <div class="text-right"><span>Olá, {{ Auth::user()->name }}!</span></div>
+        <form action="{{ route('logout') }}" method="POST">
+          {{ csrf_field() }}
+          <button type="submit" class="btn btn-default"><i class="fa fa-power-off"></i> Sair</button>
+        </form>
+      @endauth
     </div>
   </header>
 

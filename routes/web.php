@@ -31,9 +31,9 @@ Route::get('/fotos', function () {
     return view('photos');
 })->name('photos');
 
-Route::get('/perfil', function () {
-    return view('profile');
-})->name('profile');
+Route::get('/perfil', 'ProfileController@index')->name('profile');
+
+Route::post('/logout', 'Controller@logout')->name('logout');
 
 
 Route::group(['prefix' => 'admin'], function () {
