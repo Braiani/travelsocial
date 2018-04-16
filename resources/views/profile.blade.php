@@ -4,19 +4,20 @@
 
 @section('main-content')
 <div class="profile">
-  <h1 class="page-header">Douglas Walter</h1>
+  <h1 class="page-header">{{ $profile->user->name }}</h1>
   <div class="row">
     <div class="col-md-4">
-      <img src="img/user.png" class="img-thumbnail" alt="">
+      <img src="{{ Voyager::image($profile->user->avatar) }}" class="img-thumbnail" alt="">
     </div>
     <div class="col-md-8">
       <ul>
-        <li><strong>Name:</strong>Doug Walter</li>
-        <li><strong>Email:</strong>doug@gmail.com</li>
-        <li><strong>City:</strong>Boston</li>
-        <li><strong>State:</strong>Massachusetts</li>
-        <li><strong>Gender:</strong>Male</li>
-        <li><strong>DOB:</strong>September 16th</li>
+        <li><strong>Nome:</strong> {{ $profile->user->name }}</li>
+        <li><strong>E-mail:</strong> {{ $profile->user->email }}</li>
+        <li><strong>Cidade:</strong> {{ $profile->city }}</li>
+        <li><strong>Estado:</strong> {{ $profile->state }}</li>
+        <li><strong>País:</strong> {{ $profile->country }}</li>
+        <li><strong>Gênero:</strong> @if($profile->gender == 0) Não Informado @elseif($profile->gender == '1') Masculino @else Feminino @endif</li>
+        <li><strong>Data de Nascimento:</strong> {{ $profile->birthday->format('d/m/Y') }}</li>
       </ul>
     </div>
   </div><br><br>
