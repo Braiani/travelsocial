@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/membros', function () {
-    return view('members');
-})->name('members');
+Route::get('/membros', 'MembersController@index')->name('members');
 
 Route::get('/contato', function () {
     return view('contact');
